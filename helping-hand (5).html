@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helping Hand – Trusted Home Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #f7f7f7; color: #1a1a1a; }
+
+  /* NAV */
+  nav {
+    background: #fff;
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid #eee;
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo { font-size: 20px; font-weight: 700; color: #e67e22; display: flex; align-items: center; gap: 8px; }
+  .logo-icon { font-size: 22px; }
+  .nav-links { display: flex; align-items: center; gap: 24px; }
+  .nav-links a { text-decoration: none; color: #555; font-size: 15px; font-weight: 500; }
+  .nav-links a:hover { color: #e67e22; }
+  .nav-btn {
+    background: #e67e22; color: #fff; border: none; border-radius: 10px;
+    padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: #cf6d17; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: #333; border-radius: 2px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1a1a 60%, #2c2c2c 100%);
+    color: #fff;
+    padding: 60px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .hero-location { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #e67e22; margin-bottom: 12px; }
+  .hero h1 { font-size: 42px; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  .hero h1 span { color: #e67e22; }
+  .hero p { color: #bbb; font-size: 16px; margin-bottom: 28px; }
+  .hero-search { display: flex; gap: 0; max-width: 440px; }
+  .hero-search input {
+    flex: 1; padding: 14px 18px; border-radius: 12px 0 0 12px; border: none;
+    font-size: 15px; outline: none; color: #1a1a1a;
+  }
+  .hero-search button {
+    background: #e67e22; color: #fff; border: none; border-radius: 0 12px 12px 0;
+    padding: 14px 20px; font-size: 15px; font-weight: 600; cursor: pointer;
+  }
+  .hero-stats { display: flex; gap: 32px; margin-top: 36px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 24px; font-weight: 700; color: #fff; }
+  .stat-label { font-size: 12px; color: #999; margin-top: 2px; }
+  .stat-divider { width: 1px; background: #444; }
+  .hero-img-col { display: flex; justify-content: center; align-items: center; }
+  .hero-img-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px 28px;
+    border: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+  }
+  .hero-img-card .big-icon { font-size: 80px; margin-bottom: 16px; }
+  .hero-img-card p { color: #bbb; font-size: 15px; }
+  .hero-tag {
+    display: inline-block; background: rgba(230,126,34,0.2); color: #e67e22;
+    border-radius: 20px; padding: 5px 14px; font-size: 13px; margin-bottom: 10px;
+  }
+
+  /* SECTION WRAPPER */
+  .section { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+  .section-title { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+  .section-sub { color: #777; font-size: 15px; margin-bottom: 32px; }
+
+  /* FILTER PILLS */
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+  .pill {
+    padding: 8px 20px; border-radius: 30px; border: 1.5px solid #ddd;
+    font-size: 14px; font-weight: 500; cursor: pointer; background: #fff;
+    color: #555; transition: all 0.2s;
+  }
+  .pill.active, .pill:hover { background: #e67e22; color: #fff; border-color: #e67e22; }
+
+  /* SERVICES GRID */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .service-card {
+    background: #fff; border-radius: 16px; padding: 24px 20px;
+    border: 1px solid #f0f0f0; cursor: pointer; transition: all 0.2s;
+    display: flex; flex-direction: column; gap: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .service-card:hover { box-shadow: 0 6px 20px rgba(230,126,34,0.12); border-color: #e67e22; transform: translateY(-2px); }
+  .service-icon {
+    width: 52px; height: 52px; background: #fff4ec; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+  }
+  .service-name { font-size: 15px; font-weight: 600; color: #1a1a1a; }
+  .service-desc { font-size: 13px; color: #888; line-height: 1.5; }
+  .service-price { font-size: 14px; font-weight: 700; color: #e67e22; }
+  .see-all-btn {
+    margin-top: 28px; text-align: center;
+  }
+  .see-all-btn a {
+    color: #e67e22; font-weight: 600; text-decoration: none; font-size: 15px;
+    border: 2px solid #e67e22; border-radius: 10px; padding: 10px 28px;
+    display: inline-block; transition: all 0.2s;
+  }
+  .see-all-btn a:hover { background: #e67e22; color: #fff; }
+
+  /* HOW IT WORKS */
+  .how-bg { background: #fff; }
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; margin-top: 8px; }
+  .step { display: flex; flex-direction: column; gap: 12px; }
+  .step-num {
+    width: 40px; height: 40px; background: #e67e22; color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; flex-shrink: 0;
+  }
+  .step-title { font-size: 16px; font-weight: 600; }
+  .step-body { font-size: 14px; color: #777; line-height: 1.6; }
+
+  /* GUARANTEE */
+  .guarantee-band {
+    background: #fff4ec; border-radius: 20px; padding: 32px;
+    display: flex; align-items: center; gap: 20px; margin-top: 40px;
+  }
+  .guarantee-icon { font-size: 40px; flex-shrink: 0; }
+  .guarantee-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .guarantee-text { font-size: 14px; color: #777; }
+
+  /* ALL SERVICES PAGE */
+  .services-list { display: flex; flex-direction: column; gap: 0; }
+  .service-row {
+    background: #fff; display: flex; align-items: center; gap: 16px;
+    padding: 18px 20px; border-bottom: 1px solid #f0f0f0; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .service-row:first-child { border-radius: 16px 16px 0 0; }
+  .service-row:last-child { border-radius: 0 0 16px 16px; border-bottom: none; }
+  .service-row:hover { background: #fff8f3; }
+  .service-row .si { width: 48px; height: 48px; background: #fff4ec; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .row-info { flex: 1; }
+  .row-info h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .row-info p { font-size: 13px; color: #888; }
+  .row-price { font-size: 15px; font-weight: 700; color: #e67e22; margin-right: 8px; }
+  .row-arrow { color: #bbb; font-size: 18px; }
+
+  /* PROFILE */
+  .profile-card {
+    background: #fff; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); max-width: 520px; margin: 0 auto;
+  }
+  .profile-top { padding: 40px 24px 28px; text-align: center; }
+  .avatar-circle {
+    width: 80px; height: 80px; border-radius: 50%; background: #fff4ec;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; font-weight: 700; color: #e67e22;
+    margin: 0 auto 16px;
+  }
+  .profile-name { font-size: 22px; font-weight: 700; }
+  .profile-email { color: #888; font-size: 14px; margin-top: 4px; }
+  .profile-section-label {
+    padding: 10px 24px; font-size: 12px; font-weight: 700; color: #aaa;
+    letter-spacing: 0.08em; text-transform: uppercase; background: #f9f9f9;
+    border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;
+  }
+  .profile-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 24px; border-bottom: 1px solid #f5f5f5; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .profile-row:hover { background: #fafafa; }
+  .profile-row-icon { width: 42px; height: 42px; background: #fff4ec; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .profile-row-info { flex: 1; }
+  .profile-row-title { font-size: 15px; font-weight: 600; }
+  .profile-row-sub { font-size: 13px; color: #888; margin-top: 1px; }
+  .profile-row-arrow { color: #ccc; }
+  .signout-btn {
+    display: block; width: calc(100% - 48px); margin: 20px 24px;
+    padding: 16px; border-radius: 14px; border: 2px solid #e74c3c;
+    background: transparent; color: #e74c3c; font-size: 16px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; text-align: center;
+  }
+  .signout-btn:hover { background: #e74c3c; color: #fff; }
+
+  /* PAGE TABS */
+  .page-tabs { display: flex; gap: 0; border-bottom: 2px solid #eee; margin-bottom: 0; }
+  .page-tab {
+    padding: 14px 28px; font-size: 15px; font-weight: 600; cursor: pointer;
+    color: #888; border-bottom: 3px solid transparent; margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .page-tab.active { color: #e67e22; border-bottom-color: #e67e22; }
+
+  /* BOTTOM NAV */
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #fff; border-top: 1px solid #eee;
+    display: flex; z-index: 100;
+  }
+  .bnav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 10px 0 14px; cursor: pointer; color: #aaa; font-size: 11px; font-weight: 500; gap: 4px;
+    transition: color 0.15s;
+  }
+  .bnav-item .icon { font-size: 22px; }
+  .bnav-item.active { color: #e67e22; }
+  .page-spacer { height: 80px; }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  @media (max-width: 700px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-img-col { display: none; }
+    .hero h1 { font-size: 30px; }
+    .nav-links, .nav-btn { display: none; }
+    .hamburger { display: flex; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* BOOKING PAGE */
+  .booking-topbar {
+    background: #fff; position: sticky; top: 0; z-index: 90;
+    border-bottom: 1px solid #eee; padding: 0 16px;
+    display: flex; align-items: center; height: 60px; gap: 16px;
+  }
+  .booking-back {
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 20px; color: #1a1a1a; border-radius: 50%; flex-shrink: 0;
+    transition: background 0.15s; border: none; background: none;
+  }
+  .booking-back:hover { background: #f3f3f3; }
+  .booking-topbar-title { font-size: 18px; font-weight: 700; flex: 1; text-align: center; margin-right: 36px; }
+
+  .booking-wrap { max-width: 560px; margin: 0 auto; padding: 20px 20px 40px; }
+
+  .booking-summary {
+    background: #f5f5f5; border-radius: 16px; padding: 18px;
+    display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+  }
+  .booking-summary .si {
+    width: 52px; height: 52px; background: #fff4ec; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;
+  }
+  .booking-summary-name { font-size: 17px; font-weight: 700; color: #1a1a1a; }
+  .booking-summary-price { font-size: 14px; color: #777; margin-top: 2px; }
+
+  .booking-field { margin-bottom: 22px; }
+  .booking-label { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; display: block; }
+  .booking-input, .booking-textarea {
+    width: 100%; border: 1.5px solid #e2e2e2; border-radius: 14px;
+    padding: 14px 16px; font-size: 15px; font-family: inherit; color: #1a1a1a;
+    outline: none; transition: border-color 0.15s; background: #fff;
+  }
+  .booking-input:focus, .booking-textarea:focus { border-color: #e67e22; }
+  .booking-textarea { resize: vertical; min-height: 90px; }
+
+  .booking-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .booking-pill {
+    padding: 12px 20px; border-radius: 30px; border: 1.5px solid #e2e2e2;
+    font-size: 14px; font-weight: 600; cursor: pointer; background: #fff;
+    color: #444; transition: all 0.15s; white-space: nowrap;
+  }
+  .booking-pill:hover { border-color: #e67e22; }
+  .booking-pill.selected { background: #fff4ec; color: #e67e22; border-color: #e67e22; }
+
+  .booking-submit {
+    width: 100%; background: #e67e22; color: #fff; border: none;
+    border-radius: 14px; padding: 17px; font-size: 16px; font-weight: 700;
+    cursor: pointer; margin-top: 8px; transition: background 0.15s;
+  }
+  .booking-submit:hover { background: #cf6d17; }
+  .booking-submit:disabled { background: #f0b885; cursor: not-allowed; }
+
+  .booking-success {
+    text-align: center; padding: 60px 20px;
+  }
+  .booking-success .icon { font-size: 56px; margin-bottom: 16px; }
+  .booking-success h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .booking-success p { color: #777; font-size: 14px; margin-bottom: 28px; }
+
+  .booking-error {
+    color: #e74c3c; font-size: 13px; margin-top: 6px; display: none;
+  }
+
+  /* BOOKINGS LIST */
+  .bk-card {
+    background: #fff; border-radius: 16px; padding: 18px;
+    border: 1px solid #f0f0f0; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    margin-bottom: 14px;
+  }
+  .bk-card-top { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .bk-card-top .si {
+    width: 46px; height: 46px; background: #fff4ec; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+  }
+  .bk-card-name { font-size: 15px; font-weight: 700; }
+  .bk-card-price { font-size: 13px; color: #888; margin-top: 2px; }
+  .bk-status {
+    margin-left: auto; font-size: 12px; font-weight: 700; padding: 5px 12px;
+    border-radius: 20px; background: #fff4ec; color: #e67e22; white-space: nowrap;
+  }
+  .bk-row { display: flex; gap: 8px; font-size: 13px; color: #666; padding: 4px 0; }
+  .bk-row .label { color: #999; min-width: 70px; flex-shrink: 0; }
+  .bk-card-actions { margin-top: 12px; display: flex; gap: 10px; }
+  .bk-cancel-btn {
+    flex: 1; background: none; border: 1.5px solid #e74c3c; color: #e74c3c;
+    border-radius: 10px; padding: 9px; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .bk-cancel-btn:hover { background: #e74c3c; color: #fff; }
+
+  /* ADMIN */
+  .admin-login-wrap { max-width: 380px; margin: 40px auto 0; }
+  .admin-login-card {
+    background: #fff; border-radius: 20px; padding: 32px 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .admin-login-card h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .admin-login-card .sub { color: #888; font-size: 13px; margin-bottom: 22px; }
+  .admin-label { font-size: 13px; font-weight: 700; color: #1a1a1a; margin: 14px 0 6px; display: block; }
+  .admin-input {
+    width: 100%; border: 1.5px solid #e2e2e2; border-radius: 12px;
+    padding: 12px 14px; font-size: 14px; font-family: inherit; outline: none;
+    transition: border-color 0.15s;
+  }
+  .admin-input:focus { border-color: #e67e22; }
+  .admin-submit {
+    width: 100%; background: #1a1a1a; color: #fff; border: none;
+    border-radius: 12px; padding: 14px; font-size: 15px; font-weight: 700;
+    cursor: pointer; margin-top: 18px; transition: background 0.15s;
+  }
+  .admin-submit:hover { background: #333; }
+  .admin-error {
+    color: #e74c3c; font-size: 12px; margin-top: 8px; display: none;
+  }
+  .admin-topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .admin-logout-btn {
+    background: none; border: 1.5px solid #e74c3c; color: #e74c3c;
+    border-radius: 10px; padding: 8px 16px; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .admin-logout-btn:hover { background: #e74c3c; color: #fff; }
+  .admin-tabs { display: flex; gap: 8px; margin: 20px 0 24px; }
+  .admin-tab {
+    padding: 10px 20px; border-radius: 30px; border: 1.5px solid #ddd;
+    font-size: 14px; font-weight: 600; cursor: pointer; background: #fff;
+    color: #555; transition: all 0.2s;
+  }
+  .admin-tab.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .admin-panel-section { display: none; }
+  .admin-panel-section.active { display: block; }
+  .admin-booking-card {
+    background: #fff; border-radius: 16px; padding: 16px 18px;
+    border: 1px solid #f0f0f0; margin-bottom: 12px; font-size: 13px;
+  }
+  .admin-booking-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .admin-booking-top .si {
+    width: 42px; height: 42px; background: #fff4ec; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .admin-booking-name { font-size: 15px; font-weight: 700; }
+  .admin-booking-price { font-size: 13px; color: #888; margin-top: 2px; }
+  .admin-price-row {
+    background: #fff; border-radius: 14px; padding: 14px 16px;
+    border: 1px solid #f0f0f0; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .admin-price-row .si {
+    width: 40px; height: 40px; background: #fff4ec; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .admin-price-info { flex: 1; min-width: 140px; }
+  .admin-price-info h4 { font-size: 14px; font-weight: 600; }
+  .admin-price-info p { font-size: 12px; color: #999; }
+  .admin-price-edit { display: flex; align-items: center; gap: 8px; }
+  .admin-price-edit input {
+    width: 110px; border: 1.5px solid #e2e2e2; border-radius: 10px;
+    padding: 8px 10px; font-size: 13px; outline: none;
+  }
+  .admin-price-edit input:focus { border-color: #e67e22; }
+  .admin-save-btn {
+    background: #e67e22; color: #fff; border: none; border-radius: 10px;
+    padding: 8px 14px; font-size: 12px; font-weight: 700; cursor: pointer;
+  }
+  .admin-save-btn:hover { background: #cf6d17; }
+  .admin-saved-tag { font-size: 11px; color: #16a34a; font-weight: 700; display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-icon">🤝</span> Helping Hand
+  </div>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('services')">Services</a>
+    <a href="#" onclick="showPage('bookings')">Bookings</a>
+    <a href="#" onclick="showPage('profile')">Profile</a>
+    <a href="#" onclick="showPage('admin')">Admin</a>
+  </div>
+  <button class="nav-btn" onclick="showPage('services')">Book a Service</button>
+  <div class="hamburger" onclick="showPage('services')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-location">📍 Patna, Bihar</div>
+        <span class="hero-tag">✅ Verified Technicians • Same-day Service</span>
+        <h1>A trusted pair of hands<br>for every <span>home.</span></h1>
+        <p>Professional home services at your doorstep. Book in 60 seconds.</p>
+        <div class="hero-search">
+          <input type="text" placeholder="Search for a service…">
+          <button onclick="showPage('services')">Search</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">15,000+</div>
+            <div class="stat-label">Jobs done</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">4.8 ★</div>
+            <div class="stat-label">Rating</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num">60 min</div>
+            <div class="stat-label">Response</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-img-col">
+        <div class="hero-img-card">
+          <div class="big-icon">🔧</div>
+          <p>Expert technicians<br>at your door</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPULAR SERVICES -->
+  <div class="section">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <div class="section-title">Popular services</div>
+      <a href="#" onclick="showPage('services')" style="color:#e67e22; font-weight:600; text-decoration:none; font-size:15px;">See all</a>
+    </div>
+    <div class="section-sub">Quick picks from our most booked services</div>
+    <div class="services-grid" id="popular-services-grid"></div>
+    <div class="see-all-btn"><a href="#" onclick="showPage('services')">View all <span id="services-count-home">37</span> services →</a></div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-bg">
+    <div class="section">
+      <div class="section-title">How it works</div>
+      <div class="section-sub">Get expert help at home in 4 simple steps</div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Choose a service</div>
+          <div class="step-body">Pick from 37 services tailored to your home needs.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Pick a slot</div>
+          <div class="step-body">Choose a time that works best for you.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Sit back & relax</div>
+          <div class="step-body">A verified technician arrives right at your door.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">Pay after job</div>
+          <div class="step-body">Transparent pricing — pay only when you're satisfied.</div>
+        </div>
+      </div>
+      <div class="guarantee-band">
+        <div class="guarantee-icon">🛡️</div>
+        <div>
+          <div class="guarantee-title">30-day service guarantee</div>
+          <div class="guarantee-text">If the issue returns within 30 days, we fix it again — free of charge.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-spacer"></div>
+</div>
+
+<!-- SERVICES PAGE -->
+<div class="page" id="page-services">
+  <div class="section" style="padding-top:32px; padding-bottom:16px;">
+    <div class="section-title">All services</div>
+    <div class="section-sub" style="margin-bottom:20px;"><span id="services-count-list">37</span> services • free diagnosis</div>
+    <div class="filter-bar">
+      <div class="pill active" onclick="filterPill(this,'all')">All</div>
+      <div class="pill" onclick="filterPill(this,'repair')">Repair</div>
+      <div class="pill" onclick="filterPill(this,'cleaning')">Cleaning</div>
+      <div class="pill" onclick="filterPill(this,'home')">Home</div>
+      <div class="pill" onclick="filterPill(this,'educ')">Education</div>
+      <div class="pill" onclick="filterPill(this,'wedding')">💍 Wedding</div>
+    </div>
+    <div class="services-list" id="services-list"></div>
+  </div>
+  <div class="page-spacer"></div>
+</div>
+
+<!-- BOOKINGS PAGE -->
+<div class="page" id="page-bookings">
+  <div class="section" style="padding-top:32px;">
+    <div class="section-title">My Bookings</div>
+    <div class="section-sub">Track your upcoming and past service bookings</div>
+    <div id="bookings-empty-state" style="text-align:center; padding:60px 0; color:#aaa;">
+      <div style="font-size:60px; margin-bottom:16px;">📋</div>
+      <div style="font-size:18px; font-weight:600; color:#555; margin-bottom:8px;">No bookings yet</div>
+      <div style="font-size:14px; margin-bottom:24px;">Book a service and it will appear here</div>
+      <button onclick="showPage('services')" style="background:#e67e22; color:#fff; border:none; padding:12px 28px; border-radius:12px; font-size:15px; font-weight:600; cursor:pointer;">Browse Services</button>
+    </div>
+    <div id="bookings-list" style="display:none;"></div>
+  </div>
+  <div class="page-spacer"></div>
+</div>
+
+<!-- BOOK SERVICE PAGE -->
+<div class="page" id="page-booking">
+  <div class="booking-topbar">
+    <button class="booking-back" onclick="closeBooking()">←</button>
+    <div class="booking-topbar-title">Book Service</div>
+  </div>
+
+  <div class="booking-wrap" id="booking-form-wrap">
+    <div class="booking-summary">
+      <div class="si" id="booking-icon">🔧</div>
+      <div>
+        <div class="booking-summary-name" id="booking-service-name">Service</div>
+        <div class="booking-summary-price" id="booking-service-price">₹0 starting</div>
+      </div>
+    </div>
+
+    <form id="booking-form">
+      <div class="booking-field">
+        <label class="booking-label">Full name</label>
+        <input class="booking-input" type="text" id="booking-name" name="name" placeholder="Your name" required>
+      </div>
+
+      <div class="booking-field">
+        <label class="booking-label">Phone</label>
+        <input class="booking-input" type="tel" id="booking-phone" name="phone" placeholder="+91 9XXXXXXXXX" pattern="[0-9+\s]{10,15}" required>
+      </div>
+
+      <div class="booking-field">
+        <label class="booking-label">Address / Area</label>
+        <textarea class="booking-textarea" id="booking-address" name="address" placeholder="House #, street, area, landmark" required></textarea>
+      </div>
+
+      <div class="booking-field">
+        <label class="booking-label">Preferred date</label>
+        <div class="booking-pills" id="booking-date-pills"></div>
+        <input type="hidden" id="booking-date" name="preferred_date" required>
+      </div>
+
+      <div class="booking-field">
+        <label class="booking-label">Time slot</label>
+        <div class="booking-pills" id="booking-time-pills">
+          <div class="booking-pill" data-slot="8 – 10 AM" onclick="selectPill(this,'booking-time')">8 – 10 AM</div>
+          <div class="booking-pill" data-slot="10 – 12 PM" onclick="selectPill(this,'booking-time')">10 – 12 PM</div>
+          <div class="booking-pill" data-slot="12 – 2 PM" onclick="selectPill(this,'booking-time')">12 – 2 PM</div>
+          <div class="booking-pill" data-slot="2 – 4 PM" onclick="selectPill(this,'booking-time')">2 – 4 PM</div>
+          <div class="booking-pill" data-slot="4 – 6 PM" onclick="selectPill(this,'booking-time')">4 – 6 PM</div>
+        </div>
+        <input type="hidden" id="booking-time" name="time_slot" required>
+      </div>
+
+      <div class="booking-field">
+        <label class="booking-label">Describe the issue (optional)</label>
+        <textarea class="booking-textarea" id="booking-issue" name="issue_details" placeholder="Any details that will help the technician"></textarea>
+      </div>
+
+      <input type="hidden" id="booking-service-field" name="service">
+
+      <div class="booking-error" id="booking-error">Please fill all required fields.</div>
+
+      <button type="submit" class="booking-submit" id="booking-submit-btn">Submit booking</button>
+    </form>
+  </div>
+
+  <div class="booking-wrap booking-success" id="booking-success-wrap" style="display:none;">
+    <div class="icon">✅</div>
+    <h3>Booking received!</h3>
+    <p>Our team will call you shortly to confirm the appointment.</p>
+    <button class="booking-submit" style="background:#1a1a1a;" onclick="showPage('bookings')">View Bookings</button>
+  </div>
+
+  <div class="page-spacer"></div>
+</div>
+
+<!-- PROFILE PAGE -->
+<div class="page" id="page-profile">
+  <div class="section" style="padding-top:32px;">
+    <div class="section-title" style="margin-bottom:24px;">Profile</div>
+    <div class="profile-card">
+      <div class="profile-top">
+        <div class="avatar-circle">G</div>
+        <div class="profile-name">Gaurav</div>
+        <div class="profile-email">onlingking7677@gmail.com</div>
+      </div>
+
+      <div class="profile-section-label">Support</div>
+      <div class="profile-row">
+        <div class="profile-row-icon">📞</div>
+        <div class="profile-row-info">
+          <div class="profile-row-title">Call us</div>
+          <div class="profile-row-sub">+91 94716 18796</div>
+        </div>
+        <span class="profile-row-arrow">›</span>
+      </div>
+      <div class="profile-row">
+        <div class="profile-row-icon">💬</div>
+        <div class="profile-row-info">
+          <div class="profile-row-title">WhatsApp</div>
+          <div class="profile-row-sub">+91 73524 12891</div>
+        </div>
+        <span class="profile-row-arrow">›</span>
+      </div>
+      <div class="profile-row">
+        <div class="profile-row-icon">✉️</div>
+        <div class="profile-row-info">
+          <div class="profile-row-title">Email</div>
+          <div class="profile-row-sub">mrcoc7677@gmail.com</div>
+        </div>
+        <span class="profile-row-arrow">›</span>
+      </div>
+
+      <div class="profile-section-label">Service Area</div>
+      <div class="profile-row">
+        <div class="profile-row-icon">📍</div>
+        <div class="profile-row-info">
+          <div class="profile-row-title">Patna & surrounding areas</div>
+          <div class="profile-row-sub">Mon – Sat: 7am – 9pm • 24/7 emergencies</div>
+        </div>
+      </div>
+
+      <div class="profile-section-label">Business</div>
+      <div class="profile-row" onclick="showPage('admin')">
+        <div class="profile-row-icon">🔐</div>
+        <div class="profile-row-info">
+          <div class="profile-row-title">Admin panel</div>
+          <div class="profile-row-sub">Manage bookings & service prices</div>
+        </div>
+        <span class="profile-row-arrow">›</span>
+      </div>
+
+      <button class="signout-btn">↩ Sign out</button>
+    </div>
+  </div>
+  <div class="page-spacer"></div>
+</div>
+
+<!-- ADMIN PAGE -->
+<div class="page" id="page-admin">
+  <div class="section" style="padding-top:32px;">
+
+    <!-- Login form -->
+    <div id="admin-login-view" class="admin-login-wrap">
+      <div class="admin-login-card">
+        <h2>Admin Login</h2>
+        <div class="sub">Log in to manage bookings and service prices.</div>
+        <label class="admin-label">Username</label>
+        <input type="text" class="admin-input" id="admin-username" placeholder="Username" autocomplete="off">
+        <label class="admin-label">Password</label>
+        <input type="password" class="admin-input" id="admin-password" placeholder="Password" autocomplete="off">
+        <div class="admin-error" id="admin-login-error">Invalid username or password.</div>
+        <button class="admin-submit" onclick="adminLogin()">Login</button>
+      </div>
+    </div>
+
+    <!-- Admin panel (shown after login) -->
+    <div id="admin-panel-view" style="display:none;">
+      <div class="admin-topbar">
+        <div class="section-title" style="margin-bottom:0;">Admin Panel</div>
+        <button class="admin-logout-btn" onclick="adminLogout()">Logout</button>
+      </div>
+      <div class="admin-tabs">
+        <div class="admin-tab active" id="admin-tab-bookings" onclick="adminShowTab('bookings')">📋 Bookings</div>
+        <div class="admin-tab" id="admin-tab-prices" onclick="adminShowTab('prices')">💰 Service Prices</div>
+      </div>
+
+      <div class="admin-panel-section active" id="admin-section-bookings">
+        <div id="admin-bookings-empty" style="text-align:center; padding:40px 0; color:#aaa;">
+          <div style="font-size:44px; margin-bottom:12px;">📋</div>
+          <div style="font-size:15px;">No booking requests yet.</div>
+        </div>
+        <div id="admin-bookings-list"></div>
+      </div>
+
+      <div class="admin-panel-section" id="admin-section-prices">
+        <div class="section-sub" style="margin-bottom:16px;">Update the price shown to customers for each service. Changes apply immediately.</div>
+        <div id="admin-prices-list"></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-spacer"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="bnav-item active" id="bnav-home" onclick="showPage('home')">
+    <span class="icon">🏠</span>
+    <span>Home</span>
+  </div>
+  <div class="bnav-item" id="bnav-services" onclick="showPage('services')">
+    <span class="icon">⊞</span>
+    <span>Services</span>
+  </div>
+  <div class="bnav-item" id="bnav-bookings" onclick="showPage('bookings')">
+    <span class="icon">📅</span>
+    <span>Bookings</span>
+  </div>
+  <div class="bnav-item" id="bnav-profile" onclick="showPage('profile')">
+    <span class="icon">👤</span>
+    <span>Profile</span>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   SERVICES DATA
+   Single source of truth for all services + prices. Admin
+   price edits are saved to localStorage and merged in here,
+   so the Home page, Services list, and booking flow always
+   stay in sync with whatever the admin has set.
+========================================================= */
+const SERVICES = [
+  { id: 'ac-repair-and-service', icon: '❄️', name: 'AC Repair & Service', desc: 'Gas refilling, cooling issues, water leakage, AC installation and uninstallation', price: '₹399', cat: 'repair', popular: true },
+  { id: 'home-cleaning', icon: '🧹', name: 'Home Cleaning', desc: 'Deep cleaning for kitchens and bathrooms, full-home cleaning, sofa & carpet shampooing', price: '₹999', cat: 'cleaning', popular: true },
+  { id: 'fan-repair', icon: '🔄', name: 'Fan Repair', desc: 'Ceiling, table & exhaust fan repair — humming noise, slow speed, capacitor change', price: '₹199', cat: 'repair', popular: true },
+  { id: 'refrigerator-repair', icon: '🌡️', name: 'Refrigerator Repair', desc: 'Cooling problems, gas leakage, compressor issues, ice build-up, noisy operation', price: '₹349', cat: 'repair', popular: true },
+  { id: 'carpentry', icon: '🔨', name: 'Carpentry', desc: 'Furniture repair, door & window fitting, lock change, wardrobe assembly, hinge and drawer', price: '₹249', cat: 'home', popular: true },
+  { id: 'plumbing', icon: '🪠', name: 'Plumbing', desc: 'Leak repair, tap & pipe fitting, drainage blockage, bathroom fittings, water tank cleaning', price: '₹199', cat: 'home', popular: true },
+  { id: 'home-tuition', icon: '📚', name: 'Home Tuition', desc: 'Verified teachers for all subjects — Class 1 to 12, CBSE/BSEB. One-on-one sessions', price: '₹499', cat: 'educ', popular: true },
+  { id: 'coaching', icon: '🎓', name: 'Coaching', desc: 'Competitive exam coaching for BPSC, SSC, UPSC, Railway & more. Group and individual', price: '₹799', cat: 'educ', popular: true },
+  { id: 'home-painting', icon: '🎨', name: 'Home Painting', desc: 'Interior & exterior wall painting, texture work, waterproofing coating. Quality paint', price: '₹7/sq.ft', cat: 'home', popular: false },
+  { id: 'mistri-construction', icon: '🧱', name: 'Mistri (Construction)', desc: 'Skilled masons for new construction, renovation, wall repair, tile laying, plastering', price: '₹599', cat: 'home', popular: false },
+  { id: 'tv-repair', icon: '📺', name: 'TV Repair', desc: 'LED, LCD & Smart TV repair — no display, sound issues, panel damage, HDMI port', price: '₹299', cat: 'repair', popular: false },
+  { id: 'ro-service', icon: '💧', name: 'RO Service', desc: 'Water purifier installation, filter change, membrane replacement, low flow, bad taste', price: '₹249', cat: 'repair', popular: false },
+  { id: 'septic-tank-pumping', icon: '🚽', name: 'Septic Tank Pumping', desc: 'Safe & hygienic septic tank emptying, suction & cleaning service. Equipped tank', price: '₹1,499', cat: 'cleaning', popular: false },
+  { id: 'water-tank-cleaning', icon: '🪣', name: 'Water Tank Cleaning', desc: 'Overhead & underground tank cleaning, sludge removal & disinfection. Certified', price: '₹699', cat: 'cleaning', popular: false },
+  { id: 'washing-machine-repair', icon: '🫧', name: 'Washing Machine Repair', desc: 'Top load & front load repair — not spinning, water leakage, error codes, drum issues', price: '₹349', cat: 'repair', popular: false },
+  { id: 'cooler-repair-and-cleaning', icon: '🌬️', name: 'Cooler Repair & Cleaning', desc: 'Desert & window cooler servicing — pad replacement, pump repair, motor fix, deep clean', price: '₹249', cat: 'repair', popular: false },
+  { id: 'wedding-planner', icon: '💒', name: 'Wedding Planner', desc: 'Complete wedding planning — venue, catering, decoration, coordination. End-to-end management', price: '₹4,999', cat: 'wedding', popular: false },
+  { id: 'bridal-makeup', icon: '💄', name: 'Bridal Makeup', desc: 'Professional bridal makeup by certified artists — HD makeup, airbrush, party & reception looks', price: '₹2,499', cat: 'wedding', popular: false },
+  { id: 'page-printout', icon: '🖨️', name: 'Page Printout', desc: 'Black & white and color page printing — A4, A3, single & double sided. Same-day delivery', price: '₹2/page', cat: 'wedding', popular: false },
+  { id: 'book-printout', icon: '📖', name: 'Book Printout', desc: 'Spiral & hardbound book printing, bulk orders welcome. Quality paper, fast turnaround', price: '₹199', cat: 'wedding', popular: false },
+  { id: 'banner-and-hoarding', icon: '🪧', name: 'Banner & Hoarding', desc: 'Flex, vinyl & digital banners — custom size, design included. Event, wedding & shop hoardings', price: '₹299', cat: 'wedding', popular: false },
+  { id: 'cup-and-t-shirt-photo-printing', icon: '👕', name: 'Cup & T-Shirt Photo Printing', desc: 'Custom photo printing on mugs, t-shirts, keychains. Perfect wedding & birthday gifts', price: '₹199', cat: 'wedding', popular: false },
+  { id: 'laundry-service', icon: '👗', name: 'Laundry Service', desc: 'Wash, dry & fold — clothes, sarees, suits, sherwani. Pickup & delivery available at doorstep', price: '₹49/kg', cat: 'wedding', popular: false },
+  { id: 'car-and-bike-cleaning', icon: '🚗', name: 'Car & Bike Cleaning', desc: 'Interior & exterior car wash, dry cleaning, foam wash, bike detailing. At your location', price: '₹299', cat: 'wedding', popular: false },
+  { id: 'home-and-shop-cleaning', icon: '🏠', name: 'Home & Shop Cleaning', desc: 'Pre & post-wedding deep cleaning for home, farmhouse, banquet hall & shops', price: '₹1,299', cat: 'wedding', popular: false },
+  { id: 'birthday-decorations', icon: '🎂', name: 'Birthday Decorations', desc: 'Balloon decoration, theme setup, LED lights, backdrop & cake table arrangement at home', price: '₹999', cat: 'wedding', popular: false },
+  { id: 'haldi-mehndi-decorations', icon: '🌿', name: 'Haldi / Mehndi Decorations', desc: 'Traditional marigold, rose petals, pots & colourful draping for haldi & mehndi ceremonies', price: '₹1,999', cat: 'wedding', popular: false },
+  { id: 'stage-decorations', icon: '🎪', name: 'Stage Decorations', desc: 'Full stage setup — backdrop, flower wall, draping, throne chairs, carpet & lighting for weddings', price: '₹3,999', cat: 'wedding', popular: false },
+  { id: 'marwa-decorations', icon: '🌺', name: 'Marwa Decorations', desc: 'Traditional marwa/mandap decoration with flowers, banana leaves, torans & colourful cloth', price: '₹2,499', cat: 'wedding', popular: false },
+  { id: 'photographer', icon: '📸', name: 'Photographer', desc: 'Professional wedding & event photographer — candid, traditional & portrait shoots. Edited delivery', price: '₹2,999', cat: 'wedding', popular: false },
+  { id: 'photo-album', icon: '📷', name: 'Photo Album', desc: 'Premium hardbound & flexi-cover photo albums — custom design, matte & glossy finish', price: '₹799', cat: 'wedding', popular: false },
+  { id: 'drone-shoot', icon: '🚁', name: 'Drone Shoot', desc: 'Aerial drone videography & photography for weddings, events & baraat processions. 4K quality', price: '₹1,999', cat: 'wedding', popular: false },
+  { id: 'lighting-frame', icon: '🖼️', name: 'Lighting Frame', desc: 'Decorative LED lighting frames & neon signs for photo booths, reception & home décor', price: '₹1,499', cat: 'wedding', popular: false },
+  { id: 'wedding-lightning-frame', icon: '✨', name: 'Wedding Lightning Frame', desc: 'Grand wedding entry & stage lighting frames — sparkle, fairy lights & RGB LED setup', price: '₹2,999', cat: 'wedding', popular: false },
+];
+
+function loadPriceOverrides() {
+  try {
+    return JSON.parse(localStorage.getItem('hh_service_prices') || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function applyPriceOverrides() {
+  const overrides = loadPriceOverrides();
+  SERVICES.forEach(s => {
+    if (overrides[s.id] !== undefined) s.price = overrides[s.id];
+  });
+}
+applyPriceOverrides();
+
+function escapeHtmlHH(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderPopularServices() {
+  const grid = document.getElementById('popular-services-grid');
+  if (!grid) return;
+  const popular = SERVICES.filter(s => s.popular);
+  grid.innerHTML = popular.map(s => `
+    <div class="service-card" onclick="openBookingById('${s.id}')">
+      <div class="service-icon">${s.icon}</div>
+      <div class="service-name">${escapeHtmlHH(s.name)}</div>
+      <div class="service-desc">${escapeHtmlHH(s.desc)}</div>
+      <div class="service-price">${escapeHtmlHH(s.price)} starting</div>
+    </div>
+  `).join('');
+  const countHome = document.getElementById('services-count-home');
+  if (countHome) countHome.textContent = SERVICES.length;
+}
+
+function renderServicesList() {
+  const list = document.getElementById('services-list');
+  if (!list) return;
+  list.innerHTML = SERVICES.map(s => `
+    <div class="service-row" data-cat="${s.cat}" onclick="openBookingById('${s.id}')">
+      <div class="si">${s.icon}</div>
+      <div class="row-info"><h4>${escapeHtmlHH(s.name)}</h4><p>${escapeHtmlHH(s.desc)}</p></div>
+      <span class="row-price">${escapeHtmlHH(s.price)}</span>
+      <span class="row-arrow">›</span>
+    </div>
+  `).join('');
+  const countList = document.getElementById('services-count-list');
+  if (countList) countList.textContent = SERVICES.length;
+}
+
+function openBookingById(id) {
+  const svc = SERVICES.find(s => s.id === id);
+  if (!svc) return;
+  openBooking(svc.icon, svc.name, svc.price, svc.id);
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const navItem = document.getElementById('bnav-' + name);
+  if (navItem) navItem.classList.add('active');
+  if (name === 'bookings') renderBookings();
+  if (name === 'admin') renderAdminView();
+  window.scrollTo(0, 0);
+  return false;
+}
+
+function filterPill(el, cat) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  const rows = document.querySelectorAll('#services-list .service-row');
+  rows.forEach(row => {
+    if (cat === 'all' || row.dataset.cat === cat) {
+      row.style.display = 'flex';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
+/* ===== BOOKING PAGE ===== */
+let bookingPreviousPage = 'services';
+let currentServiceIcon = '🔧';
+let currentServiceName = '';
+let currentServicePrice = '';
+
+function buildDatePills() {
+  const wrap = document.getElementById('booking-date-pills');
+  wrap.innerHTML = '';
+  const today = new Date();
+  const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const monthLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  for (let i = 0; i < 5; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    let label;
+    if (i === 0) label = 'Today';
+    else if (i === 1) label = 'Tomorrow';
+    else label = `${dayLabels[d.getDay()]}, ${d.getDate()} ${monthLabels[d.getMonth()]}`;
+
+    const value = `${dayLabels[d.getDay()]}, ${d.getDate()} ${monthLabels[d.getMonth()]} ${d.getFullYear()}`;
+
+    const pill = document.createElement('div');
+    pill.className = 'booking-pill';
+    pill.textContent = label;
+    pill.dataset.dateValue = value;
+    pill.onclick = function() { selectPill(this, 'booking-date'); };
+    wrap.appendChild(pill);
+  }
+  // select "Today" by default
+  const first = wrap.querySelector('.booking-pill');
+  selectPill(first, 'booking-date');
+}
+
+function selectPill(el, hiddenInputId) {
+  const group = el.parentElement;
+  group.querySelectorAll('.booking-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  const hidden = document.getElementById(hiddenInputId);
+  hidden.value = el.dataset.dateValue || el.dataset.slot || el.textContent.trim();
+}
+
+function openBooking(icon, name, price) {
+  bookingPreviousPage = document.querySelector('.page.active').id.replace('page-', '');
+
+  currentServiceIcon = icon;
+  currentServiceName = name;
+  currentServicePrice = price;
+
+  document.getElementById('booking-icon').textContent = icon;
+  document.getElementById('booking-service-name').textContent = name;
+  document.getElementById('booking-service-price').textContent = price;
+  document.getElementById('booking-service-field').value = name + ' (' + price + ')';
+
+  // reset form
+  document.getElementById('booking-form').reset();
+  document.getElementById('booking-service-field').value = name + ' (' + price + ')';
+  document.getElementById('booking-error').style.display = 'none';
+  document.getElementById('booking-form-wrap').style.display = 'block';
+  document.getElementById('booking-success-wrap').style.display = 'none';
+
+  buildDatePills();
+  // reset time pills
+  document.querySelectorAll('#booking-time-pills .booking-pill').forEach(p => p.classList.remove('selected'));
+  document.getElementById('booking-time').value = '';
+
+  const submitBtn = document.getElementById('booking-submit-btn');
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Submit booking';
+
+  showPage('booking');
+}
+
+function closeBooking() {
+  showPage(bookingPreviousPage || 'services');
+}
+
+/* ===== BOOKINGS STORAGE & LIST ===== */
+// In-memory fallback used when localStorage isn't available or writable
+// (e.g. when this file is opened via a content:// URI from WhatsApp/Drive,
+// or in a private/restricted browser context).
+let memoryBookings = [];
+let storageAvailable = true;
+
+function isStorageAvailable() {
+  try {
+    const testKey = '__hh_test__';
+    localStorage.setItem(testKey, '1');
+    localStorage.removeItem(testKey);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+storageAvailable = isStorageAvailable();
+
+function getBookings() {
+  if (!storageAvailable) return memoryBookings;
+  try {
+    return JSON.parse(localStorage.getItem('hh_bookings') || '[]');
+  } catch (e) {
+    return memoryBookings;
+  }
+}
+
+function saveBooking(booking) {
+  if (!storageAvailable) {
+    memoryBookings.unshift(booking);
+    return;
+  }
+  try {
+    const bookings = getBookings();
+    bookings.unshift(booking);
+    localStorage.setItem('hh_bookings', JSON.stringify(bookings));
+  } catch (e) {
+    // Storage write failed (quota, restricted context, etc) — fall back
+    // to in-memory so the booking still shows up for this session.
+    storageAvailable = false;
+    memoryBookings = getBookings();
+    memoryBookings.unshift(booking);
+  }
+}
+
+function cancelBooking(id) {
+  if (!confirm('Cancel this booking?')) return;
+  let bookings = getBookings();
+  const cancelledBooking = bookings.find(b => b.id === id);
+  bookings = bookings.map(b => b.id === id ? { ...b, status: 'Cancelled' } : b);
+  if (!storageAvailable) {
+    memoryBookings = bookings;
+  } else {
+    try {
+      localStorage.setItem('hh_bookings', JSON.stringify(bookings));
+    } catch (e) {
+      storageAvailable = false;
+      memoryBookings = bookings;
+    }
+  }
+  renderBookings();
+  notifyFormspreeCancellation(cancelledBooking);
+}
+
+function notifyFormspreeCancellation(booking) {
+  if (!booking) return;
+  const formData = new FormData();
+  formData.append('_subject', 'Booking CANCELLED — ' + booking.serviceName);
+  formData.append('status', 'CANCELLED');
+  formData.append('service', booking.serviceName + ' (' + booking.servicePrice + ')');
+  formData.append('name', booking.name);
+  formData.append('phone', booking.phone);
+  formData.append('address', booking.address);
+  formData.append('preferred_date', booking.date);
+  formData.append('time_slot', booking.time);
+  formData.append('issue_details', booking.issue || '');
+  formData.append('booking_id', booking.id);
+
+  fetch('https://formspree.io/f/mrewzkoj', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).catch(() => {
+    // Silently ignore — cancellation is already reflected in My Bookings.
+  });
+}
+
+function renderBookings() {
+  const bookings = getBookings();
+  const emptyState = document.getElementById('bookings-empty-state');
+  const listEl = document.getElementById('bookings-list');
+
+  if (bookings.length === 0) {
+    emptyState.style.display = 'block';
+    listEl.style.display = 'none';
+    listEl.innerHTML = '';
+    return;
+  }
+
+  emptyState.style.display = 'none';
+  listEl.style.display = 'block';
+
+  listEl.innerHTML = bookings.map(b => {
+    const statusColor = b.status === 'Cancelled'
+      ? 'background:#fdecea;color:#e74c3c;'
+      : 'background:#fff4ec;color:#e67e22;';
+    const cancelBtn = b.status === 'Cancelled'
+      ? ''
+      : `<div class="bk-card-actions"><button class="bk-cancel-btn" onclick="cancelBooking('${b.id}')">Cancel booking</button></div>`;
+
+    return `
+      <div class="bk-card">
+        <div class="bk-card-top">
+          <div class="si">${b.icon}</div>
+          <div>
+            <div class="bk-card-name">${b.serviceName}</div>
+            <div class="bk-card-price">${b.servicePrice}</div>
+          </div>
+          <span class="bk-status" style="${statusColor}">${b.status}</span>
+        </div>
+        <div class="bk-row"><span class="label">Date</span><span>${b.date}</span></div>
+        <div class="bk-row"><span class="label">Time</span><span>${b.time}</span></div>
+        <div class="bk-row"><span class="label">Address</span><span>${b.address}</span></div>
+        <div class="bk-row"><span class="label">Phone</span><span>${b.phone}</span></div>
+        ${cancelBtn}
+      </div>
+    `;
+  }).join('');
+}
+
+document.getElementById('booking-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('booking-name').value.trim();
+  const phone = document.getElementById('booking-phone').value.trim();
+  const address = document.getElementById('booking-address').value.trim();
+  const date = document.getElementById('booking-date').value;
+  const time = document.getElementById('booking-time').value;
+  const issue = document.getElementById('booking-issue').value.trim();
+  const errorEl = document.getElementById('booking-error');
+
+  if (!name || !phone || !address || !date || !time) {
+    errorEl.textContent = 'Please fill all required fields, including date and time slot.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  errorEl.style.display = 'none';
+
+  const submitBtn = document.getElementById('booking-submit-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting…';
+
+  const formData = new FormData(this);
+  const bookingId = 'bk_' + Date.now();
+  formData.append('_subject', 'New Booking — ' + currentServiceName);
+  formData.append('status', 'CONFIRMED');
+  formData.append('booking_id', bookingId);
+
+  // Save the booking locally right away so it always shows up in My Bookings,
+  // regardless of whether the Formspree notification succeeds.
+  try {
+    saveBooking({
+      id: bookingId,
+      icon: currentServiceIcon,
+      serviceName: currentServiceName,
+      servicePrice: currentServicePrice,
+      name: name,
+      phone: phone,
+      address: address,
+      date: date,
+      time: time,
+      issue: issue,
+      status: 'Confirmed',
+      createdAt: new Date().toISOString()
+    });
+    renderBookings();
+    document.getElementById('booking-form-wrap').style.display = 'none';
+    document.getElementById('booking-success-wrap').style.display = 'block';
+  } catch (err) {
+    console.error('Failed to save booking:', err);
+    errorEl.textContent = 'Could not save your booking on this device. Please try again.';
+    errorEl.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit booking';
+    return;
+  }
+
+  // Send the notification to Formspree in the background. If it fails
+  // (network issue, unconfirmed Formspree form, etc.) the booking the
+  // customer just made still stays saved and visible in My Bookings.
+  fetch('https://formspree.io/f/mrewzkoj', {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).catch(() => {
+    // Silently ignore — booking is already saved locally.
+  }).finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit booking';
+  });
+});
+
+/* =========================================================
+   ADMIN PANEL
+   Demo-only client-side login (matches the pattern used
+   elsewhere in this file). For real security this must be
+   handled by a server with hashed credentials — anyone who
+   views the page source can see the values below.
+========================================================= */
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "gaurabhjha0404";
+let isAdminLoggedIn = false;
+
+function renderAdminView() {
+  const loginView = document.getElementById('admin-login-view');
+  const panelView = document.getElementById('admin-panel-view');
+  if (isAdminLoggedIn) {
+    loginView.style.display = 'none';
+    panelView.style.display = 'block';
+    renderAdminBookings();
+    renderAdminPrices();
+  } else {
+    loginView.style.display = 'block';
+    panelView.style.display = 'none';
+  }
+}
+
+function adminLogin() {
+  const u = document.getElementById('admin-username').value.trim();
+  const p = document.getElementById('admin-password').value;
+  const errorEl = document.getElementById('admin-login-error');
+  if (u === ADMIN_USERNAME && p === ADMIN_PASSWORD) {
+    isAdminLoggedIn = true;
+    errorEl.style.display = 'none';
+    document.getElementById('admin-username').value = '';
+    document.getElementById('admin-password').value = '';
+    renderAdminView();
+  } else {
+    errorEl.style.display = 'block';
+  }
+}
+
+function adminLogout() {
+  isAdminLoggedIn = false;
+  renderAdminView();
+}
+
+function adminShowTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-panel-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('admin-tab-' + tab).classList.add('active');
+  document.getElementById('admin-section-' + tab).classList.add('active');
+}
+
+function renderAdminBookings() {
+  const bookings = getBookings();
+  const emptyEl = document.getElementById('admin-bookings-empty');
+  const listEl = document.getElementById('admin-bookings-list');
+
+  if (bookings.length === 0) {
+    emptyEl.style.display = 'block';
+    listEl.innerHTML = '';
+    return;
+  }
+  emptyEl.style.display = 'none';
+
+  listEl.innerHTML = bookings.map(b => {
+    const statusColor = b.status === 'Cancelled'
+      ? 'background:#fdecea;color:#e74c3c;'
+      : 'background:#fff4ec;color:#e67e22;';
+    const cancelBtn = b.status === 'Cancelled'
+      ? ''
+      : `<div class="bk-card-actions"><button class="bk-cancel-btn" onclick="adminCancelBooking('${b.id}')">Cancel booking</button></div>`;
+    return `
+      <div class="admin-booking-card">
+        <div class="admin-booking-top">
+          <div class="si">${b.icon}</div>
+          <div style="flex:1;">
+            <div class="admin-booking-name">${escapeHtmlHH(b.name)}</div>
+            <div class="admin-booking-price">${escapeHtmlHH(b.serviceName)} • ${escapeHtmlHH(b.servicePrice)}</div>
+          </div>
+          <span class="bk-status" style="${statusColor}">${b.status}</span>
+        </div>
+        <div class="bk-row"><span class="label">Phone</span><span>${escapeHtmlHH(b.phone)}</span></div>
+        <div class="bk-row"><span class="label">Address</span><span>${escapeHtmlHH(b.address)}</span></div>
+        <div class="bk-row"><span class="label">Date</span><span>${escapeHtmlHH(b.date)}</span></div>
+        <div class="bk-row"><span class="label">Time</span><span>${escapeHtmlHH(b.time)}</span></div>
+        ${b.issue ? `<div class="bk-row"><span class="label">Issue</span><span>${escapeHtmlHH(b.issue)}</span></div>` : ''}
+        ${cancelBtn}
+      </div>
+    `;
+  }).join('');
+}
+
+function adminCancelBooking(id) {
+  cancelBooking(id);
+  renderAdminBookings();
+}
+
+function renderAdminPrices() {
+  const listEl = document.getElementById('admin-prices-list');
+  listEl.innerHTML = SERVICES.map(s => `
+    <div class="admin-price-row">
+      <div class="si">${s.icon}</div>
+      <div class="admin-price-info">
+        <h4>${escapeHtmlHH(s.name)}</h4>
+        <p>${s.cat}</p>
+      </div>
+      <div class="admin-price-edit">
+        <input type="text" id="price-input-${s.id}" value="${escapeHtmlHH(s.price)}">
+        <button class="admin-save-btn" onclick="saveServicePrice('${s.id}')">Save</button>
+        <span class="admin-saved-tag" id="saved-tag-${s.id}">✓ Saved</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function saveServicePrice(id) {
+  const input = document.getElementById('price-input-' + id);
+  const newPrice = input.value.trim();
+  if (!newPrice) {
+    alert('Please enter a price.');
+    return;
+  }
+  const svc = SERVICES.find(s => s.id === id);
+  if (svc) svc.price = newPrice;
+
+  const overrides = loadPriceOverrides();
+  overrides[id] = newPrice;
+  localStorage.setItem('hh_service_prices', JSON.stringify(overrides));
+
+  // keep Home and Services pages in sync immediately
+  renderPopularServices();
+  renderServicesList();
+
+  const tag = document.getElementById('saved-tag-' + id);
+  if (tag) {
+    tag.style.display = 'inline';
+    setTimeout(() => { tag.style.display = 'none'; }, 1500);
+  }
+}
+
+// render bookings list, service catalog, and popular grid on initial page load
+renderBookings();
+renderPopularServices();
+renderServicesList();
+</script>
+</body>
+</html>
