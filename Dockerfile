@@ -8,7 +8,7 @@ COPY pom.xml .
 # Download dependencies first so Docker can cache this layer
 RUN mvn dependency:go-offline -B
 
-COPY src ./src
+COPY ..
 RUN mvn clean package -DskipTests
 
 # ============================================================
