@@ -41,7 +41,7 @@ public class ChatbotServlet extends HttpServlet {
     // Change the model name here if you want a different Gemini model/version.
     private static final String MODEL = "gemini-1.5-pro";
     private static final String API_URL =
-        "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent";
+        "https://generativelanguage.googleapis.com/v1/models/" + MODEL + ":generateContent";
 
     // Context given to the model so it answers only about Helping Hand's services.
     private static final String SYSTEM_PROMPT =
