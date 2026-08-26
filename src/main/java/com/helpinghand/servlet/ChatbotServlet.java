@@ -39,7 +39,7 @@ public class ChatbotServlet extends HttpServlet {
     // Prefer reading from environment variable so the key is never committed to GitHub
     private static final String API_KEY = System.getenv("GEMINI_API_KEY");
     // Change the model name here if you want a different Gemini model/version.
-    private static final String MODEL = "gemini-2.5-flash";
+    private static final String MODEL = "gemini-2.5-flash-8b";
     private static final String API_URL =
         "https://generativelanguage.googleapis.com/v1beta/models/" + MODEL + ":generateContent";
 
