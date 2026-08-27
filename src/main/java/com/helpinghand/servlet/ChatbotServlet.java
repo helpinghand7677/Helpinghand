@@ -41,7 +41,7 @@ public class ChatbotServlet extends HttpServlet {
     private static final String API_KEY = System.getenv("GROQ_API_KEY");
     // Change the model name here if Groq updates/retires this one.
     // See https://console.groq.com/docs/models for the current list.
-    private static final String MODEL = "llama-3.3-70b-versatile";
+    private static final String MODEL = "openai/gpt-oss-120b";
     private static final String API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
     // Context given to the model so it answers only about Helping Hand's services.
